@@ -1,40 +1,20 @@
 
-from dataclasses import dataclass
 from fastapi import FastAPI
-import httpx
+from models import ServerStatusResponse, Server
 
 app = FastAPI()
 
 
-servers_dict = {
-    
-    "Nginx": "Running",
-    "Docker": "Not Running",
-    "Terraform": "Running",
-    "Kubernetes": "Running",
-    "AWS": "Not Running"
-}
+@app.get("/server")
+def get_server(server_name: str) -> ServerStatusResponse:
+    server_status = servers.get(server_name, "Does not exist")
+    return ServerStatusResponse(server_name, server_status)
 
 
-new_servers_dict = { key.strip().lower() : value for key, value in servers_dict.items()}
-
-
-@app.get("/")
-def ask_for_server(server_name: str) -> str:
-    "This is our main function"
-    server_name = server_name.strip().lower()
-    try:
-       return f"{server_name} is {new_servers_dict[server_name]}"
-    except KeyError:
-            return f"{server_name} is not recognized."
-
-@app.get("/add")
-def add_server(server_name: str) -> str:
-    "Add server to the list"
-    server_name = server_name.strip().lower()
-    if server_name in new_servers_dict:
-        return "Server already exist"
+@app.post("/server")
+def create_server(server_name: str) -> ServerStatusResponse:
+    if server_name in servers:
+        return ServerStatusResponse(server_name, "Name already exists")
     else:
-        new_servers_dict[server_name] = "Running"
-        return f"{server_name} was added to servers list"
-
+        servers[server_name] = True
+        return ServerStatusResponse(server_name, "Created")
