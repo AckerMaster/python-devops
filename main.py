@@ -25,4 +25,4 @@ def get_users() -> list[User]:
 
 @app.post("/users")
 def create_user(new_user: User) -> bool:
-    return new_user
+    return True
