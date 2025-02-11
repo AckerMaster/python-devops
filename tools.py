@@ -16,31 +16,25 @@ servers_dict = {
 # converting servers name to lower case
 new_servers_dict = { key.strip().lower() : value for key, value in servers_dict.items()}
 
+
+
 # asking for user input until completion
-while True:
-    user_input = input("Please Enter server name: ")
-    user_input = user_input.strip().lower()
-    logger.info(f"The user chose: {user_input}")
+
+server_name = input("Please Enter server name: ")
+
+def check_server(server_name):
+    server_name = server_name.strip().lower()
+    logger.info(f"The user chose: {server_name}")
     try:
-        print(f"{user_input} is {new_servers_dict[user_input]}")
-        break
+        print(f"{server_name} is {new_servers_dict[server_name]}")
+
     except KeyError:
-            print("Server is not recognized. type 'quit' to leave or 'list' for servers list")
+            print("Server is not recognized.")
             logger.error("Invalid Input from user")
-    
-    if (user_input == "quit"):
-            print("Okay, Bye")
-            logger.info(f"The user chose to quit")
-            break
-    if (user_input == "list"):
-        print("Current Servers are: ")
-        logger.info(f"The user chose to view all servers")
-        for item in new_servers_dict:
-            print(item)
-        
 
-
-
+            
+            
+            
 #---------------------------------------------------------------------#
 #----------------------- Another main function -----------------------#
 #---------------------------------------------------------------------#
