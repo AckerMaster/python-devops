@@ -178,3 +178,4 @@ pyrightconfig.json
 log.txt
 *.log
 servers.txt
+settings.json
