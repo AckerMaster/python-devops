@@ -6,16 +6,14 @@ import httpx
 app = FastAPI()
 
 
-@dataclass
-class User:
-    name: str
-    email: str
-
-
 @app.get("/")
 def hello_world():
     "This is our main function"
     return "Hello World!"
+
+@app.get("/error")
+def error():
+    raise ValueError("oops")
 
 @app.get("/users")
 def get_users() -> list[User]:
