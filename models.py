@@ -31,6 +31,5 @@ def read_server_list() -> list[Server]:
 
 def add_new_server(new_server: Server):
     with open("servers.txt", "a") as f:
-        new_server = Server(name="wow", online=True, cpus=6, ram=10)
         f.write("\n")
         f.write(new_server.model_dump_json())
