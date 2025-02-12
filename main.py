@@ -15,7 +15,8 @@ def get_server(server_name: str) -> ServerStatusResponse:
     return ServerStatusResponse(server_name=server_name, server_status="Didn't find this server")
 
 @app.post("/server")
-def create_server(server_name: str) -> ServerStatusResponse:
-    new_server = Server(name=server_name, online=True, cpus=10, ram=30)
+def create_server(server_name: str, online_status: bool, CPUs, RAM) -> ServerStatusResponse:
+    "Please enter server name, it's online status, number of CPUs and RAM"
+    new_server = Server(name=server_name, online=online_status, cpus=CPUs, ram=RAM)
     add_new_server(new_server)
     return ServerStatusResponse(server_name=server_name, server_status="Created")
