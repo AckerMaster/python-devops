@@ -2,9 +2,10 @@ import httpx
 from time import sleep
 import os
 
+# our API key
 API_KEY = os.environ.get("API_KEY")
 
-
+# a function that prints user data from a site
 def print_user(user_id: str):
     URL = f"https://jsonplaceholder.typicode.com/users/{user_id}"
     try:
@@ -24,7 +25,7 @@ def print_user(user_id: str):
     except httpx.HTTPError:
         print("Couln't connect")
 
-
+# a function that attempts to feth given metrics
 def get_metrics(metrics: str):
     print("Fetching system metrics...")
     retry = 3
