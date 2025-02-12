@@ -1,7 +1,7 @@
 import logging
 
 logger = logging.getLogger("myapp")
-servers = {"nginX": True, "DoCkEr": False}
+servers = {"Dginx": True, "Docker": False}
 
 def get_server_status(server_name: str) -> bool:
     lowercase_servers = {key.strip().lower(): value for key, value in servers.items()}
@@ -9,6 +9,7 @@ def get_server_status(server_name: str) -> bool:
         return lowercase_servers[server_name]
     except KeyError:
         logger.error(f"The server name {server_name} does not exist")
+        
 
 
 def check_servers_from_terminal():
