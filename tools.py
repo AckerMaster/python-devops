@@ -1,7 +1,7 @@
 import logging
 
 logger = logging.getLogger("myapp")
-servers = {"Dginx": True, "Docker": False}
+servers = {"Nginx": True, "Docker": False}
 
 def get_server_status(server_name: str) -> bool:
     lowercase_servers = {key.strip().lower(): value for key, value in servers.items()}
