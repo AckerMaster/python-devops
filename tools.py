@@ -9,6 +9,7 @@ def get_server_status(server_name: str) -> bool:
         return lowercase_servers[server_name]
     except KeyError:
         logger.error(f"The server name {server_name} does not exist")
+        return False
         
 
 
